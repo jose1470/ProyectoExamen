@@ -6,19 +6,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.TblUsuariocl2;
+
 /**
  * Servlet implementation class ControladorUsuario
  */
 public class ControladorUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
+	 /**
      * @see HttpServlet#HttpServlet()
      */
     public ControladorUsuario() {
         super();
         // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +34,16 @@ public class ControladorUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		String usuario = request.getParameter("usuario");
+        String password = request.getParameter("password");
+
+        TblUsuariocl2 usuarioValidado = TblUsuariocl2.validarUsuario(usuario, password);
+        
+        if (usuarioValidado != null) {
+           
+        } else {
+		
 	}
 
 }
