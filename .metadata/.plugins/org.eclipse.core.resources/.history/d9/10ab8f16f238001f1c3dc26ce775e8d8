@@ -1,0 +1,5 @@
+package Dao;
+
+final class ClassProductoImp {
+
+}

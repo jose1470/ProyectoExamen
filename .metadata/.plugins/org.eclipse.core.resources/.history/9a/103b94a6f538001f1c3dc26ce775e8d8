@@ -1,0 +1,92 @@
+package controllador;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Dao.ClassProductoImp;
+import model.TblProductocl3;
+import java.util.List;
+/**
+ * Servlet implementation class ControladorProducto
+ */
+public class ControladorProducto extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ControladorProducto() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	
+		TblProductocl3 producto=new TblProductocl3();
+		ClassProductoImp crud=new ClassProductoImp();
+		
+		
+		//recuperamos la accion y codigo
+		String accion=request.getParameter("accion");
+		//aplicamos una condicion...
+		if(accion!=null){
+			switch(accion){
+			case "Modificar":
+				int producto1=Integer.parseInt(request.getParameter("cod"));
+				//asignar el codigo...
+				producto1.setiIdproductoscl3(producto1);
+				TblProductocl3 buscarcod=crud.BuscarProducto(producto1);
+				//enviar los valores buscados por codigo de la base de datos
+				//al formulario actualizar..
+				request.setAttribute("codigo",buscarcod.getIdproductoscl3());
+				request.setAttribute("nombre",buscarcod.getNombrecl3());
+				request.setAttribute("apellido",buscarcod.getPrecioventacl3());
+				request.setAttribute("dni",buscarcod.getPreciocompcl3());
+				request.setAttribute("email",buscarcod.getEstadocl3());
+				request.setAttribute("telefono",buscarcod.getDescripcl3());				
+				//redireccionar..
+				request.getRequestDispatcher("/FormActualizarProducto.jsp").forward(request, response);
+				//salimos
+				break;
+			case "Eliminar":
+				int codliminar=Integer.parseInt(request.getParameter("cod"));
+				//asignamos el codigo a eliminar
+				producto1.setIdproductoscl3(codliminar);
+				//invocamos al metodo eliminar...
+				crud.EliminarProducto(producto1);
+				//refrescar el listado..
+				List<TblProductocl3> listado=crud.ListadoProducto();
+				request.setAttribute("listadodeclientes",listado);
+				//redireccionar
+				request.getRequestDispatcher("/ListadoClientes.jsp");
+				//salimos
+				break;
+			
+			case "Listar":
+				List<TblProductocl3> listadoproducto=crud.ListadoProducto();
+				//invocamos el listado  de productos para la vista
+				request.setAttribute("listadodeproductos",listadoproducto);
+				//redireccionamos
+				request.getRequestDispatcher("/ListadoProductos.jsp").forward(request, response);
+				//salimos
+				break;
+	  }
+		}
+}
+		
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
