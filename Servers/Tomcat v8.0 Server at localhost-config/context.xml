@@ -31,4 +31,8 @@
     <!--
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
+    <JarScanner>
+        <JarScanFilter defaultPluggabilityScan="false" />
+    </JarScanner>
+    
 </Context>

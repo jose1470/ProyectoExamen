@@ -1,0 +1,14 @@
+package Interfaces;
+
+import java.util.List;
+
+import model.TblProductocl3;
+
+public interface IUsuario {
+	//declaramos los metodos
+		public void RegistrarUsuario(TblProductocl3 producto);
+		public void ActualizarUsuario(TblProductocl3 producto);
+		public void EliminarUsuario(TblProductocl3 producto);
+		public TblUsuariocl3 BuscarUsuario(TblProductocl3 producto);
+		public List<TblUsuariocl3> ListadoUsuario();
+}

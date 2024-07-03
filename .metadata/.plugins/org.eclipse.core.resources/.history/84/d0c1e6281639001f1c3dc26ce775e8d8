@@ -1,0 +1,66 @@
+package controllador;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Dao.ClassUsuarioImp;
+import model.TblUsuariocl3;
+
+/**
+ * Servlet implementation class controladorUsuario
+ */
+public class controladorUsuario extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public controladorUsuario() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		TblUsuariocl3 usuario = new TblUsuariocl3();
+		usuario.setUsuariocl3(username);
+		
+		TblUsuariocl3 usuarioEncontrado = ClassUsuarioImp.BuscarUsuario(usuario);
+		
+		if(usuarioEncontrado != null){
+			if(usuarioEncontrado.getPasswordcl3().equals(password)){
+				HttpSession.setAttribute("usuario",usuarioEncontrado);
+				session.setAttribute("usuario", usuarioEncontrado);
+				response.sendRedirect(request.getContextPath()+"/index.jsp");				
+			} else{
+				//contraseña incorrecta
+				String mensajeError = "Usuario o contraseña incorrectos";
+				request.setAttribute("mensaje", mensajeError);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+		} else {
+			//Usuario no encontrado
+			String mensajeError = "Usuario o contraseña incorrecta";
+			request.setAttribute("mensaje", mensajeError);
+			request.getRequestDispatcher("login.jsp").forward(request,response);
+		}
+	}
+
+}
