@@ -15,8 +15,7 @@ public class TblProductocl3 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idproductoscl3;
+	private int idproductocl3;
 
 	private String descripcl3;
 
@@ -31,12 +30,12 @@ public class TblProductocl3 implements Serializable {
 	public TblProductocl3() {
 	}
 
-	public int getIdproductoscl3() {
-		return this.idproductoscl3;
+	public int getIdproductocl3() {
+		return this.idproductocl3;
 	}
 
-	public void setIdproductoscl3(int idproductoscl3) {
-		this.idproductoscl3 = idproductoscl3;
+	public void setIdproductocl3(int idproductocl3) {
+		this.idproductocl3 = idproductocl3;
 	}
 
 	public String getDescripcl3() {

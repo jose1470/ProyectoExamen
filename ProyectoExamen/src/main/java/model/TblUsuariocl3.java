@@ -15,7 +15,6 @@ public class TblUsuariocl3 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idusuariocl3;
 
 	private String passwordcl3;

@@ -100,7 +100,7 @@ public class ClassProductoImp implements IProducto{
 				em.getTransaction().begin();
 						
 				//RECUPERAMOS EL CODIGO A BUSCAR
-				TblProductocl3 busproducto=em.find(TblProductocl3.class,producto.getIdproductoscl3());
+				TblProductocl3 busproducto=em.find(TblProductocl3.class,producto.getIdproductocl3());
 				
 				//CONFIRMAMOS
 				em.getTransaction().commit();
@@ -123,7 +123,7 @@ public class ClassProductoImp implements IProducto{
 				em.getTransaction().begin();
 						
 				//RECUPERAMOS LOS CLIENTES DE LA BASE DE DATOS
-				List<TblProductocl3> listadoProducto=em.createQuery("select c from TblProductocl2 c",TblProductocl3.class).getResultList();
+				List<TblProductocl3> listadoProducto=em.createQuery("select c from TblProductocl3 c",TblProductocl3.class).getResultList();
 				
 				//CONFIRMAMOS
 				em.getTransaction().commit();

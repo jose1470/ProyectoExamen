@@ -1,0 +1,28 @@
+package TestEntidades;
+import java.util.List;
+
+import Dao.ClassProductoImp;
+import model.TblProductocl3;
+
+public class TestEntidadProducto {
+
+		
+		public static void main(String[] args) {
+			//realizamos la respectiva instancia de las clases...
+			TblProductocl3 producto=new TblProductocl3();
+			ClassProductoImp crud=new ClassProductoImp();
+			
+			//asignamos valores
+			
+			producto.setNombrecl2("leche");
+			producto.setPrecioventacl2(5);
+			producto.setPreciocompcl2(7);
+			producto.setEstadocl2("vig.");
+			producto.setDescripcl2("oferta");
+			
+			//invocamos al metodo registrar...
+			crud.RegistrarProducto(producto);
+			
+	}
+
+}
